@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-md-12">
+    <form class="" [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit"
+           [disabled]="!recipeForm.valid"
+           class="btn btn-success"
+          name="button">Save</button>
+          <button type="button"
+          class="btn btn-danger"
+          name="button"
+          (click)="onCancel()"
+          >Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text"
+            name="name"
+            value=""
+            formControlName="name"
+            class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="imagePath">image URL</label>
+            <input type="text"
+            name="imagePath"
+            value=""
+            #imagePath
+            formControlName="imagePath"
+
+            id="imagePath"
+            class="form-control">
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <img [src]="imagePath.value" class="img-responsive" alt="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="img"
+            name="imagePath"
+            value=""
+            formControlName="description"
+            id="description"
+            class="form-control"
+            rows="6">
+           </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 " formArrayName="ingredients">
+          <div class="row"
+          [formGroupName]="i"
+          *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index">
+            <div class="col-md-8">
+              <input type="text"
+              class="form-control"
+              formControlName="name">
+            </div>
+            <div class="col-md-2">
+              <input type="text"
+              class="form-control"
+              formControlName="amount">
+            </div>
+            <div class="col-md-2">
+              <button
+              type="button"
+              (click)="onDeleteIngredient(i)"
+              class="btn btn-danger">
+                X
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-success" (click)="onAddIngredient()" name="button">Add ingredient</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
